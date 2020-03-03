@@ -11,5 +11,5 @@ fref = 50E+6 # Reference frequency to calculate chromaticity function
 rot = 0 # Antenna rotation in degrees
 
 # Sky maps and antenna beam directories in l-m plane
-pdir = REACHDriftScan.npy_beam_dipoleandbalun # Beam directory
-mdir = REACHDriftScan.ta_REACHmaps # Map directory
+pdir = DriftScanSims.npy_beam_dipoleandbalun # Beam directory
+mdir = DriftScanSims.ta_REACHmaps # Map directory
