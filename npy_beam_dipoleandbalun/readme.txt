@@ -1,4 +1,0 @@
-Dominic Anstey (da401@cam.ac.uk) invited you to view the file "hexagonal_dipole_balun_pattern.npy" on Dropbox.
-
-Dominic said:
-"Dear Nima, Here is a dropbox link to the beam pattern for the hexagonal dipole with a 10m ground plane and a balun. It is gridded onto every degree, with the data in a (65160,3,151) array. The second axis has the angle of inclination from zenith in element 0, the angle of rotation from the x axis in element 1 and the absolute gain in that direction in element 2. The 3rd axis is frequency, giving the beams at every MHz from 50MHz to 200MHz. I hope this makes sense. Let me know if there are any problems. Regards, Dominic"
