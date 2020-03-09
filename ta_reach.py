@@ -2,6 +2,7 @@
 # Import stuff
 import numpy
 from scipy.io import loadmat as load
+import time
 
 # Time and Frequency Range
 obsFreq = numpy.arange(50, 151)*1E+6 # Observation frequency in Hz
@@ -41,4 +42,23 @@ if cf == 1:
 for fidx in range(0, len(obsFreq)):
   # Load antenna beams
   beam_name = pdir + '/reach_hexdip_pat_' + str(int(obsFreq[fidx]/1E+6)) + '.mat'
-  beam = load(beam_name)['Pat']
+  Pat = load(beam_name)['Pat']
+  Pat[Pat < 0.001] = 0 # set floor to zero (outside of l-m beam)
+
+  if cf == 1: # Load reference beam
+    pp = pdir + '/reach_hexdip_pat_' + str(int(fref/1E+6)) + '.mat'
+    beamref = load(pp)['Pat']
+    beamref[beamref < 0.001] = 0 # Set floor to zero (outside of l-m beam)
+
+  # Time index
+  for tidx in range (0, len(LST)):
+    tic = time.time()
+    LSTi = LST[tidx]
+    
+    # Sky map (UV) - needs to generate and load first time around
+    # Creating strings of paths to maps for loading
+    if str(numpy.around(LST[tidx]*1000)/1000).endswith('.0'):
+      LStime = str(int(numpy.around(LST[tidx]*1000)/1000))
+    else:
+      LStime = str(numpy.around(LST[tidx]*1000)/1000)
+    map_name = mdir + '/sky_map_uv_f' + str(int(numpy.around(10*obsFreq[fidx]/1E+6/10))) + 'MHz_LST' + LStime + 'deg.mat'
